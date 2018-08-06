@@ -1,8 +1,8 @@
-import {IApiUtterance, IApiNluOutput} from "alfred-protocols";
 import * as express from "express";
 import {Request, Response} from "express";
+import {IApiNluOutput, IApiUtterance} from "hal-protocols";
 
-import parse from './parse';
+import parse from "./parse";
 const bodyParser = require("body-parser");
 
 const port = process.env.NODE_PORT || 8081;

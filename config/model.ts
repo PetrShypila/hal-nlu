@@ -1,4 +1,4 @@
-import { Languages } from 'alfred-protocols';
+import { Languages } from 'hal-protocols';
 
 interface ILanguageModel {
   intents: IIntent[];

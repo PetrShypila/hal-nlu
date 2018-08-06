@@ -1,22 +1,22 @@
-import {IApiUtterance, IApiNluOutput, Languages} from "alfred-protocols";
-import script from '../../config/model';
+import {IApiNluOutput, IApiUtterance, Languages} from "hal-protocols";
+import script from "../../config/model";
 
 
 const parse = (input: IApiUtterance): IApiNluOutput => {
   const language: Languages = detectLanguage(input.utterance);
   const output: IApiNluOutput = {
-    sessionId: input.sessionId,
-    language,
     intents: [],
+    language,
+    sessionId: input.sessionId,
   };
 
 
   script[language].intents.forEach((intent) => {
     // Sort intents by number of words in sample
-    intent.samples.sort((a, b,): number => {
-      if(a.split(" ").length > b.split(" ").length) {
+    intent.samples.sort((a, b): number => {
+      if (a.split(" ").length > b.split(" ").length) {
         return -1;
-      } else if(b.split(" ").length > a.split(" ").length) {
+      } else if (b.split(" ").length > a.split(" ").length) {
         return 1;
       }
       return 0;
@@ -32,7 +32,7 @@ const parse = (input: IApiUtterance): IApiNluOutput => {
 
       const parsedIntents = utterance.match(new RegExp(formattedSample, "ig"));
 
-      if(parsedIntents) {
+      if (parsedIntents) {
 
         parsedIntents.forEach((parsed) => {
 
@@ -67,13 +67,13 @@ const escapeRegExp = (str: string) => {
 };
 
 const replaceAll = (str: string, find: string, replace: string): string => {
-  return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+  return str.replace(new RegExp(escapeRegExp(find), "g"), replace);
 };
 
 const locateSlots = (sample: string): number[] => {
   // Split sample by spaces and find indexes of slots
   return sample.split(" ").reduce((accumulator: number[], currentValue: string, currentIndex: number): number[] => {
-    if(currentValue.startsWith("{") && currentValue.endsWith("}")) {
+    if (currentValue.startsWith("{") && currentValue.endsWith("}")) {
       accumulator.push(currentIndex);
     }
 
