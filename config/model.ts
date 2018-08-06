@@ -1,4 +1,4 @@
-import { Languages } from 'hal-protocols';
+import { Languages } from "hal-protocols";
 
 interface ILanguageModel {
   intents: IIntent[];
@@ -12,7 +12,7 @@ interface IIntent {
 }
 
 interface ISlot {
-  name: string
+  name: string;
 }
 
 interface IType {
@@ -28,38 +28,38 @@ script["english"] = {
   intents: [
     {
       name: "PersonalDataScript",
-      slots: [],
       samples: [
-        "buy.+insurance"
-      ]
+        "buy.+insurance",
+      ],
+      slots: [],
     },
     {
       name: "NumberIntent",
+      samples: [
+        "{NumberSlot}",
+      ],
       slots: [
         {
-          name: "NumberSlot"
-        }
-      ],
-      samples: [
-        "{NumberSlot}"
+          name: "NumberSlot",
+        },
       ],
     },
     {
       name: "PersonalNameIntent",
-      slots: [
-        {
-          name: "AnySlot",
-        }
-      ],
       samples: [
         "My name is {AnySlot}",
         "My name is {AnySlot} {AnySlot}",
       ],
-    }
+      slots: [
+        {
+          name: "AnySlot",
+        },
+      ],
+    },
   ],
   types: {
     AnySlot: {
-      value: "[a-zA-Z]+"
+      value: "[a-zA-Z]+",
     },
     NumberSlot: {
       value: "[0-9]+",
@@ -71,19 +71,19 @@ script["german"] = {
   intents: [
     {
       name: "NumberIntent",
+      samples: [
+        "{NumberSlot}",
+      ],
       slots: [
         {
-          name: "NumberSlot"
-        }
-      ],
-      samples: [
-        "{NumberSlot}"
+          name: "NumberSlot",
+        },
       ],
     },
   ],
   types: {
     AnySlot: {
-      value: "[a-zA-Z]+"
+      value: "[a-zA-Z]+",
     },
     NumberSlot: {
       value: "[0-9]+",
